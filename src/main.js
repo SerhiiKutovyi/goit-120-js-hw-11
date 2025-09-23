@@ -1,16 +1,20 @@
-// import getImagesByQuery from './js/pixabay-api';
+import getImagesByQuery from './js/pixabay-api';
+import createGallery from './js/render-functions';
 
-import axios from 'axios';
+const refs = {
+  form: document.querySelector('.form'),
+  img: document.querySelector('.gallery'),
+};
 
-const API_KEY = '32386885-8dbf1bc36075d10a6eaf5580b';
-axios.defaults.baseURL = 'https://pixabay.com/';
+refs.form.addEventListener('submit', e => {
+  e.preventDefault();
+  const query = e.target.elements.search.value.trim();
 
-axios('/api', {
-  params: {
-    key: API_KEY,
-    q: 'car',
-    image_type: 'photo',
-  },
-})
-  .then(res => console.log(res.data.hits))
-  .catch(() => console.log('error'));
+  if (!query) {
+    return;
+  }
+
+  getImagesByQuery(query).then(res =>
+    refs.img.insertAdjacentHTML('beforeend', createGallery(res))
+  );
+});
