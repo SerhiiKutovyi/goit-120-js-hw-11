@@ -1,10 +1,9 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-const 
+let lightbox = null;
 
-const createGallery = images => {
-  //   clearGallery();
+export const createGallery = images => {
   return images
     .map(
       ({
@@ -34,13 +33,16 @@ const createGallery = images => {
     .join('');
 };
 
-export default createGallery;
-
-new SimpleLightbox('.gallery a', {
-  captions: true,
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+export const initLightbox = () => {
+  if (!lightbox) {
+    lightbox = new SimpleLightbox('.gallery a', {
+      captionsData: 'alt',
+      captionDelay: 250,
+    });
+  } else {
+    lightbox.refresh();
+  }
+};
 
 // const clearGallery = () => {
 //   img.innerHTML = '';

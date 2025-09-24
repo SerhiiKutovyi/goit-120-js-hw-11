@@ -6,7 +6,8 @@
 
 .gallery img {
   width: 360px;
-  height: 200px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
 }
 
 .wrapper {
