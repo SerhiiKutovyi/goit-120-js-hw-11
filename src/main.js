@@ -11,6 +11,7 @@ import {
 const refs = {
   form: document.querySelector('.form'),
   gallery: document.querySelector('.gallery'),
+  loader: document.querySelector('.loader'),
 };
 
 refs.form.addEventListener('submit', e => {
@@ -23,14 +24,18 @@ refs.form.addEventListener('submit', e => {
     return;
   }
 
+  refs.loader.classList.remove('hidden');
+
   getImagesByQuery(query)
     .then(res => {
-      console.log(res);
-
       if (res.hits.length === 0) {
         iziToast.show({
-          title: 'Hey',
-          message: 'What would you like to add?',
+          position: 'topRight',
+          iconUrl: './img/Group (1).svg',
+          messageColor: 'rgba(255, 255, 255, 1)',
+          color: 'rgba(239, 64, 64, 1)',
+          message:
+            'Sorry, there are no images matching </br> your search query. Please try again!',
         });
       } else {
         refs.gallery.insertAdjacentHTML('beforeend', createGallery(res.hits));
@@ -39,5 +44,9 @@ refs.form.addEventListener('submit', e => {
     })
     .catch(error => {
       error.message;
+    })
+    .finally(() => {
+      refs.form.reset();
+      refs.loader.classList.add('hidden');
     });
 });
