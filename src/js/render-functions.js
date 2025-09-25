@@ -16,15 +16,15 @@ export const createGallery = images => {
         downloads,
       }) => {
         return `
-      <li>
+      <li class='gallery-img-item'>
         <a href='${largeImageURL}'>
           <img src="${webformatURL}" alt="${tags} "/>
         </a>
-        <div class='wrapper'>
-          <p>${likes}</p>
-          <p>${views}</p>
-          <p>${comments}</p>
-          <p>${downloads}</p>
+        <div class='gallery-wrapper-text'>
+          <p class='gallery-img-text'>Likes <span class='gallery-span'>${likes}</span></p>
+          <p class='gallery-img-text'>Views<span class='gallery-span'>${views}</span></p>
+          <p class='gallery-img-text'>Comments<span class='gallery-span'>${comments}</span></p>
+          <p class='gallery-img-text'>Downloads<span class='gallery-span'>${downloads}</span></p>
         </div>
       </li>
         `;
@@ -44,9 +44,9 @@ export const initLightbox = () => {
   }
 };
 
-// const clearGallery = () => {
-//   img.innerHTML = '';
-// };
+export const clearGallery = gallery => {
+  gallery.innerHTML = '';
+};
 
 // const showLoader = () => {
 //   img.innerHTML = 'Loading';

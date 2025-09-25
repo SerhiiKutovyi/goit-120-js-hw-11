@@ -10,12 +10,12 @@ const getImagesByQuery = query => {
       q: `${query}`,
       image_type: 'photo',
       orientation: 'horizontal',
-      safesearch: 'false',
+      safesearch: 'true',
     },
   })
-    .then(res => res.data.hits)
+    .then(res => res.data)
     .catch(error => {
-      console.log(error.message);
+      error.massage;
       return [];
     });
 };
