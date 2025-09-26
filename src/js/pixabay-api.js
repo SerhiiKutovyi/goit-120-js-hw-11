@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const API_KEY = '32386885-8dbf1bc36075d10a6eaf5580b';
-axios.defaults.baseURL = 'https://pixabay.com/';
+axios.defaults.baseURL = 'https://pixabay.com/api/';
 
 const getImagesByQuery = query => {
-  return axios('/api', {
+  return axios('', {
     params: {
       key: API_KEY,
       q: `${query}`,
@@ -15,7 +15,7 @@ const getImagesByQuery = query => {
   })
     .then(res => res.data)
     .catch(error => {
-      error.massage;
+      error.message;
       return [];
     });
 };
