@@ -3,8 +3,8 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 let lightbox = null;
 
-export const createGallery = images => {
-  return images
+export const createGallery = (images, gallery) => {
+  const markup = images
     .map(
       ({
         webformatURL,
@@ -31,9 +31,9 @@ export const createGallery = images => {
       }
     )
     .join('');
-};
 
-export const initLightbox = () => {
+  gallery.insertAdjacentHTML('beforeend', markup);
+
   if (!lightbox) {
     lightbox = new SimpleLightbox('.gallery a', {
       captionsData: 'alt',
@@ -54,16 +54,4 @@ export const showLoader = loader => {
 
 export const hideLoader = loader => {
   loader.classList.add('hidden');
-};
-
-export const btnDisabled = on => {
-  on.disabled = true;
-};
-
-export const btnEnabled = off => {
-  off.disabled = false;
-};
-
-export const formReset = active => {
-  active.reset();
 };

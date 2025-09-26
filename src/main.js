@@ -2,15 +2,12 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 import getImagesByQuery from './js/pixabay-api';
+import { btnDisabled, btnEnabled, formReset } from './js/utils.js';
 import {
   createGallery,
-  initLightbox,
   clearGallery,
   showLoader,
   hideLoader,
-  btnDisabled,
-  btnEnabled,
-  formReset,
 } from './js/render-functions';
 
 const refs = {
@@ -44,8 +41,7 @@ refs.form.addEventListener('submit', e => {
             'Sorry, there are no images matching </br> your search query. Please try again!',
         });
       } else {
-        refs.gallery.insertAdjacentHTML('beforeend', createGallery(res.hits));
-        initLightbox();
+        createGallery(res.hits, refs.gallery);
       }
     })
     .catch(error => {
