@@ -18,13 +18,9 @@ body {
   letter-spacing: 0.04em;
 
   color: #242424;
-  background-color: #fff;
+  background-color: #e9e8e8;
 }
 
 .hidden-scroll {
   padding-right: 0px !important;
-}
-
-.hidden {
-  display: none;
 }

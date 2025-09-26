@@ -48,10 +48,22 @@ export const clearGallery = gallery => {
   gallery.innerHTML = '';
 };
 
-// const showLoader = () => {
-//   img.innerHTML = 'Loading';
-// };
+export const showLoader = loader => {
+  loader.classList.remove('hidden');
+};
 
-// const hideLoader = () => {
-//   img.innerHTML = '';
-// };
+export const hideLoader = loader => {
+  loader.classList.add('hidden');
+};
+
+export const btnDisabled = on => {
+  on.disabled = true;
+};
+
+export const btnEnabled = off => {
+  off.disabled = false;
+};
+
+export const formReset = active => {
+  active.reset();
+};

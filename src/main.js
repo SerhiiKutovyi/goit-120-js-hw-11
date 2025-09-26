@@ -6,12 +6,18 @@ import {
   createGallery,
   initLightbox,
   clearGallery,
+  showLoader,
+  hideLoader,
+  btnDisabled,
+  btnEnabled,
+  formReset,
 } from './js/render-functions';
 
 const refs = {
   form: document.querySelector('.form'),
   gallery: document.querySelector('.gallery'),
-  loader: document.querySelector('.loader'),
+  loader: document.querySelector('.loader-position'),
+  button: document.querySelector('.form-btn'),
 };
 
 refs.form.addEventListener('submit', e => {
@@ -23,8 +29,8 @@ refs.form.addEventListener('submit', e => {
   if (!query) {
     return;
   }
-
-  refs.loader.classList.remove('hidden');
+  showLoader(refs.loader);
+  btnDisabled(refs.button);
 
   getImagesByQuery(query)
     .then(res => {
@@ -46,7 +52,8 @@ refs.form.addEventListener('submit', e => {
       error.message;
     })
     .finally(() => {
-      refs.form.reset();
-      refs.loader.classList.add('hidden');
+      formReset(refs.form);
+      hideLoader(refs.loader);
+      btnEnabled(refs.button);
     });
 });
